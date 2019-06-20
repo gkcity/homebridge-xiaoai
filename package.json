@@ -1,6 +1,6 @@
 {
   "name": "homebridge-xiaoai",
-  "version": "0.0.73",
+  "version": "0.0.74",
   "description": "Xiaoai Operator for Homebridge",
   "license": "Apache-2.0",
   "main": "dist/index.js",

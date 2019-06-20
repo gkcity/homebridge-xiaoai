@@ -6,5 +6,5 @@ export declare enum IotStatus {
     DISCONNECTING = "disconnecting",
     DISCONNECTED = "disconnected",
     CONNECTING = "connecting",
-    CONNECTED = "connected",
+    CONNECTED = "connected"
 }

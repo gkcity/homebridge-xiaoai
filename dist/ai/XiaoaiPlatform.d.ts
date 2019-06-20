@@ -14,15 +14,15 @@ export declare class XiaoaiPlatform {
     constructor(log: any, config: any, api: any);
     accessories(callback: Function): void;
     configureAccessory(accessory: any): void;
-    private didFinishLaunching();
-    private onHapClientReady();
-    private onHapEvent(event);
-    private readAccessories(endpoints);
-    private createInstances(devices);
-    private createInstancesFinished(instances);
-    private handleCreateInstancesResult(x);
-    private loadAccessoriesConfig(path);
-    private createIotRuntime(config, children);
-    private connect();
-    private showAccessKey();
+    private didFinishLaunching;
+    private onHapClientReady;
+    private onHapEvent;
+    private readAccessories;
+    private createInstances;
+    private createInstancesFinished;
+    private handleCreateInstancesResult;
+    private loadAccessoriesConfig;
+    private createIotRuntime;
+    private connect;
+    private showAccessKey;
 }
