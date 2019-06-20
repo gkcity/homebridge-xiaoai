@@ -35,8 +35,8 @@ sudo npm i -g homebridge-xiaoai
 				"uri": "/endpoint"
 			},
 			"instance": {
-				"host": "localhost",
-				"port": 3000
+				"host": "console.geekool.cn",
+				"port": 80
 			},
 			"hap": {
 				"pin": "031-45-154",

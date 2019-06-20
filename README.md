@@ -54,3 +54,11 @@ sudo npm i -g homebridge-xiaoai
 	]
 ```
 
+
+## 启动
+
+```
+homebridge -I
+```
+
+注意，必须携带-I参数启动，否则会启动失败．
