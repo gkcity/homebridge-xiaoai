@@ -22,8 +22,23 @@ sudo npm i -g homebridge-xiaoai
 
 ## 配置
 
-在homebridge的配置文件中加入:
+* 在homebridge的配置文件中给accessory添加名称和deviceId:
+```json
+"accessories": [
+		{
+			"accessory": "FakeBulb",
+			"name": "LightBulb 0",
+			"deviceId": "123456abcd"
+		},
+		{
+			"accessory": "FakeBulb",
+			"name": "LightBulb 1",
+			"deviceId": "123456abce"
+		}
+	],
+```
 
+* 在homebridge的配置文件中给添加一个platform
 ```json
 "platforms": [
 		{
