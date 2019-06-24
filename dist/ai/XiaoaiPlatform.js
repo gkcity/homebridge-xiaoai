@@ -7,6 +7,7 @@ const rest = require("typed-rest-client/RestClient");
 const fs = require("fs");
 const InstanceCodec_1 = require("./typedef/codec/InstanceCodec");
 const HAPNodeJSClient = require('hap-node-client').HAPNodeJSClient;
+const qrcode = require('qrcode-terminal');
 class XiaoaiPlatform {
     constructor(log, config, api) {
         this.accessoriesConfig = [];
@@ -139,6 +140,8 @@ class XiaoaiPlatform {
             this.iot.getAccessKey()
                 .then(x => {
                 this.log('getAccessKey: ', x);
+                this.log('Scan this code with your GeekHome app on your android device to pair with Homebridge');
+                qrcode.generate(x);
             })
                 .catch(e => this.log('getAccessKey failed!'));
         }
