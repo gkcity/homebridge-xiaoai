@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2d11c69-da61-4c30-a307-6b47d4697705" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ai/XiaoaiPlatform.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ai/XiaoaiPlatform.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -18,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ai/XiaoaiPlatform.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="637">
-              <caret line="193" lean-forward="true" selection-start-line="193" selection-end-line="193" />
+            <state relative-caret-position="1521">
+              <caret line="197" column="47" lean-forward="true" selection-start-line="197" selection-start-column="47" selection-end-line="197" selection-end-column="47" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
               </folding>
@@ -61,9 +62,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1200" />
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="x" value="67" />
+    <option name="y" value="27" />
+    <option name="width" value="1133" />
+    <option name="height" value="1893" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -135,7 +137,7 @@
       <updated>1561341312729</updated>
       <workItem from="1561341316509" duration="646000" />
       <workItem from="1561343809136" duration="25000" />
-      <workItem from="1561344141800" duration="646000" />
+      <workItem from="1561344141800" duration="836000" />
     </task>
     <task id="LOCAL-00001" summary="fix bug">
       <created>1561342626486</created>
@@ -162,13 +164,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2185000" />
+    <option name="totallyTimeSpent" value="2375000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1200" y="0" width="1920" height="1080" extended-state="6" />
+    <frame x="67" y="27" width="1133" height="1893" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18344755" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31351352" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -182,7 +184,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.96822035" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.9681275" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -242,8 +244,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ai/XiaoaiPlatform.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="637">
-          <caret line="193" lean-forward="true" selection-start-line="193" selection-end-line="193" />
+        <state relative-caret-position="1521">
+          <caret line="197" column="47" lean-forward="true" selection-start-line="197" selection-start-column="47" selection-end-line="197" selection-end-column="47" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
           </folding>
