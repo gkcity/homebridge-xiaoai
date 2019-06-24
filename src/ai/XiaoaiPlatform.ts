@@ -187,9 +187,13 @@ export class XiaoaiPlatform {
         if (this.iot) {
             this.iot.getAccessKey()
                 .then(x => {
-                    this.log('getAccessKey: ', x);
+                    const code = {
+                        id: this.iotConfig.serialNumber + '@' + this.iotConfig.productId + '/' + this.iotConfig.productVersion,
+                        key: x,
+                    };
+                    this.log('getAccessKey: ', code);
                     this.log('Scan this code with your GeekHome app on your android device to pair with Homebridge');
-                    qrcode.generate(x);
+                    qrcode.generate(code);
                 })
                 .catch(e => this.log('getAccessKey failed!'));
         }
