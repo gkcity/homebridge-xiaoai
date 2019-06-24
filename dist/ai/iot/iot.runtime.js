@@ -22,7 +22,6 @@ class IotRuntime {
         this.children = new Map();
         this.host = '';
         this.port = 0;
-        console.log('IotRuntime.initialize');
         this.status = iot_status_1.IotStatus.INITIALIZING;
         const getter = new iot_ltsk_getter_impl_1.IotLtskGetterImpl(deviceLTPK, deviceLTSK);
         const cipher = new xiot_core_xcp_ts_1.XcpClientCipherProductImpl(productId, productVersion, getter, mipher_1.Convert.base642bin(serverLTPK));
@@ -34,11 +33,15 @@ class IotRuntime {
         this.client.addQueryHandler(xiot_core_message_ts_1.INVOKE_ACTION_METHOD, (query) => this.invokeAction(query));
         this.client.addQueryHandler(xiot_core_message_ts_1.GET_CHILDREN_METHOD, (query) => this.getChildren(query));
         this.status = iot_status_1.IotStatus.INITIALIZED;
-        children.forEach(x => this.children.set(x.serialNumber + '@' + x.productId, x));
         this.log = log;
         this.hap = hap;
         this.host = host;
         this.port = port;
+        this.log('IotRuntime.initialize');
+        children.forEach(x => {
+            this.children.set(x.serialNumber + '@' + x.productId, x);
+            this.log(x.serialNumber + ' => ' + x.aid);
+        });
     }
     uninitialized() {
         return (this.status === iot_status_1.IotStatus.UNINITIALIZED);

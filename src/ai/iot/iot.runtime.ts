@@ -56,7 +56,6 @@ export class IotRuntime {
               hap: any,
               host: string,
               port: number) {
-    console.log('IotRuntime.initialize');
 
     this.status = IotStatus.INITIALIZING;
     const getter = new IotLtskGetterImpl(deviceLTPK, deviceLTSK);
@@ -70,12 +69,17 @@ export class IotRuntime {
     this.client.addQueryHandler(GET_CHILDREN_METHOD, (query) => this.getChildren(query));
     this.status = IotStatus.INITIALIZED;
 
-    children.forEach(x => this.children.set(x.serialNumber + '@' + x.productId, x));
-
     this.log = log;
     this.hap = hap;
     this.host = host;
     this.port = port;
+
+    this.log('IotRuntime.initialize');
+
+    children.forEach(x => {
+      this.children.set(x.serialNumber + '@' + x.productId, x);
+      this.log(x.serialNumber + ' => ' + x.aid);
+    });
   }
 
   did(): string {
