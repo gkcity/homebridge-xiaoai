@@ -145,7 +145,7 @@ class XiaoaiPlatform {
                 };
                 this.log('getAccessKey: ', code);
                 this.log('Scan this code with your GeekHome app on your android device to pair with Homebridge');
-                qrcode.generate(code);
+                qrcode.generate(JSON.stringify(code));
             })
                 .catch(e => this.log('getAccessKey failed!'));
         }
