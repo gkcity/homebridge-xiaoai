@@ -45,7 +45,8 @@ class XiaoaiPlatform {
         this.log('onHapEvent: ', event);
     }
     readAccessories(endpoints) {
-        this.log('endpoints: ', endpoints.length);
+        // this.log('endpoints: ', endpoints.length);
+        this.log('endpoints: ', JSON.stringify(endpoints));
         if (endpoints.length !== 1) {
             this.log('readAccessories error!');
             return;
