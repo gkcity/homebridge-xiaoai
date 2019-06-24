@@ -122,7 +122,6 @@ export class XiaoaiPlatform {
             const accessory = this.accessoriesConfig[i];
             const instance = instances[i];
             instance.serialNumber = accessory.deviceId;
-            instance.aid = i + 1;
         }
 
         this.iot = this.createIotRuntime(this.iotConfig, instances);
