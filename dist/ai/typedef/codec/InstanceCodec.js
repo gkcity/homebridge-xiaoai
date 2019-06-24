@@ -7,7 +7,7 @@ class InstanceCodec {
         return (array != null) ? array.map(x => InstanceCodec.decode(x)) : [];
     }
     static decode(o) {
-        return new Instance_1.Instance(o.productId, o.productVersion, new xiot_core_spec_ts_1.DeviceType(o.type));
+        return new Instance_1.Instance(o.aid, o.productId, o.productVersion, new xiot_core_spec_ts_1.DeviceType(o.type));
     }
 }
 exports.InstanceCodec = InstanceCodec;
