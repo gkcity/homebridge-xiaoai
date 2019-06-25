@@ -7,6 +7,7 @@ import * as rest from 'typed-rest-client/RestClient';
 import * as fs from 'fs';
 import {Instance} from './typedef/Instance';
 import {InstanceCodec} from './typedef/codec/InstanceCodec';
+import {IotStatus} from './iot/iot.status';
 
 const HAPNodeJSClient = require('hap-node-client').HAPNodeJSClient;
 const qrcode = require('qrcode-terminal');
@@ -54,6 +55,14 @@ export class XiaoaiPlatform {
 
     private onHapClientReady() {
         this.log('onHapClientReady');
+
+        if (this.iot) {
+            if (this.iot.status === IotStatus.CONNECTED || this.iot.status === IotStatus.CONNECTING) {
+                this.log('iot already started!');
+                return;
+            }
+        }
+
         this.hap.HAPaccessories(this.readAccessories.bind(this));
     }
 
@@ -179,7 +188,10 @@ export class XiaoaiPlatform {
             const uri = this.config.accesspoint.uri;
             this.iot.connect(host, port, uri)
                 .then(() => this.showAccessKey())
-                .catch(e => this.log('connect failed!'));
+                .catch(e => {
+                    this.log('connect failed!');
+                    this.iot = null;
+                });
         }
     }
 
