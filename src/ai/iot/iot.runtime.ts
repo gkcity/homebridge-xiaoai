@@ -460,7 +460,7 @@ export class IotRuntime {
    * ]
    */
   private onHapEvent(event: any) {
-    this.log('onHapEvent: ', event);
+    // this.log('onHapEvent: ', event);
 
     const array: any[] = event;
     for (const item of array) {
@@ -495,13 +495,16 @@ export class IotRuntime {
   }
 
   private getChild(aid: number): Instance | null {
+    let found: Instance | null = null;
+
     this.children.forEach((child, did) => {
+      this.log('child: ' + child.aid + ' => ' + did);
       if (child.aid === aid) {
-        return child;
+        found = child;
       }
     });
 
-    return null;
+    return found;
   }
 
   private sendPropertyChanged(did: string, siid: number, piid: number, value: any) {

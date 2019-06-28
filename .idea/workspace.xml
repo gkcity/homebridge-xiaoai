@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e2d11c69-da61-4c30-a307-6b47d4697705" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ai/XiaoaiPlatform.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ai/XiaoaiPlatform.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ai/iot/iot.runtime.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ai/iot/iot.runtime.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ai/typedef/Instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ai/typedef/Instance.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,44 +16,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ai/XiaoaiPlatform.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="670">
-              <caret line="122" column="36" selection-start-line="122" selection-start-column="36" selection-end-line="122" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#58#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ai/iot/iot.runtime.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1501">
-              <caret line="434" selection-start-line="434" selection-end-line="434" />
+            <state relative-caret-position="593">
+              <caret line="502" column="22" lean-forward="true" selection-start-line="502" selection-start-column="22" selection-end-line="502" selection-end-column="22" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ai/typedef/IotConfig.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="13" selection-start-column="13" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ai/typedef/Instance.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
             </state>
           </provider>
         </entry>
@@ -76,8 +44,8 @@
       <list>
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/ai/typedef/codec/InstanceCodec.ts" />
-        <option value="$PROJECT_DIR$/src/ai/typedef/Instance.ts" />
         <option value="$PROJECT_DIR$/src/ai/XiaoaiPlatform.ts" />
+        <option value="$PROJECT_DIR$/src/ai/typedef/Instance.ts" />
         <option value="$PROJECT_DIR$/src/ai/iot/iot.runtime.ts" />
       </list>
     </option>
@@ -217,17 +185,24 @@
       <option name="project" value="LOCAL" />
       <updated>1561425250605</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="send event to cloud: property is changed">
+      <created>1561688269744</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1561688269744</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6520000" />
+    <option name="totallyTimeSpent" value="8420000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1133" height="1893" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.31351352" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31351352" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -241,7 +216,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.9681275" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.29595903" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -255,7 +230,8 @@
     <MESSAGE value="remove log" />
     <MESSAGE value="show qrcode" />
     <MESSAGE value="fix bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix bug" />
+    <MESSAGE value="send event to cloud: property is changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="send event to cloud: property is changed" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/ai/typedef/codec/InstanceCodec.ts">
@@ -289,27 +265,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ai/typedef/Instance.ts">
+    <entry file="file://$PROJECT_DIR$/node_modules/xiot-core-xcp-ts/dist/xiot/core/xcp/XcpClient.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="136">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/xiot-core-spec-ts/dist/xiot/core/spec/typedef/instance/Device.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ai/XiaoaiPlatform.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="670">
-          <caret line="122" column="36" selection-start-line="122" selection-start-column="36" selection-end-line="122" selection-end-column="36" />
+        <state relative-caret-position="395">
+          <caret line="209" column="12" selection-start-line="209" selection-start-column="12" selection-end-line="209" selection-end-column="12" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ai/typedef/Instance.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ai/iot/iot.runtime.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1501">
-          <caret line="434" selection-start-line="434" selection-end-line="434" />
+        <state relative-caret-position="593">
+          <caret line="502" column="22" lean-forward="true" selection-start-line="502" selection-start-column="22" selection-end-line="502" selection-end-column="22" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
           </folding>
