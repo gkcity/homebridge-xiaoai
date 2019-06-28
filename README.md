@@ -28,12 +28,12 @@ sudo npm i -g homebridge-xiaoai
 		{
 			"accessory": "FakeBulb",
 			"name": "LightBulb 0",
-			"deviceId": "123456abcd"
+			"deviceId": "xxx"          // 建议填写配件的mac地址, 不能重复使用
 		},
 		{
 			"accessory": "FakeBulb",
 			"name": "LightBulb 1",
-			"deviceId": "123456abce"
+			"deviceId": "yyy"          // 建议填写配件的mac地址, 不能重复使用
 		}
 	],
 ```
@@ -69,6 +69,15 @@ sudo npm i -g homebridge-xiaoai
 	]
 ```
 
+* 注意: 在bridge的配置信息里的username最好是网关的mac地址, 不能重复使用
+```json
+"bridge": {
+		"name": "MyBridge",
+		"username": "CC:22:3D:E3:CE:01",
+		"port": 51826,
+		"pin": "031-45-154"
+},
+```
 
 ## 启动
 
