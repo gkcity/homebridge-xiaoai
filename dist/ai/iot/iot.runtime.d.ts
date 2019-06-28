@@ -33,4 +33,20 @@ export declare class IotRuntime {
     private readCharacteristic;
     private writeCharacteristic;
     private subscribeEvents;
+    /**
+     * [
+     *   {
+     *     host: '10.0.1.29',
+     *     port: 51826,
+     *     aid: 7,
+     *     iid: 10,
+     *     value: true,
+     *     status: true
+     *   }
+     * ]
+     */
+    private onHapEvent;
+    private onCharacteristicChanged;
+    private getChild;
+    private sendPropertyChanged;
 }

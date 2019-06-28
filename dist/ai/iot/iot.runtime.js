@@ -39,7 +39,8 @@ class IotRuntime {
         this.port = port;
         this.log('IotRuntime.initialize');
         children.forEach(x => {
-            this.children.set(x.serialNumber + '@' + x.productId, x);
+            x.did = x.serialNumber + '@' + x.productId;
+            this.children.set(x.did, x);
             this.log(x.serialNumber + ' => ' + x.aid);
             this.subscribeEvents(x);
         });
@@ -359,6 +360,76 @@ class IotRuntime {
             else {
                 this.log('Error: Event Register %s:%s ->', host, port, err, status);
             }
+        });
+        this.hap.on('hapEvent', this.onHapEvent.bind(this));
+    }
+    /**
+     * [
+     *   {
+     *     host: '10.0.1.29',
+     *     port: 51826,
+     *     aid: 7,
+     *     iid: 10,
+     *     value: true,
+     *     status: true
+     *   }
+     * ]
+     */
+    onHapEvent(event) {
+        this.log('onHapEvent: ', event);
+        const array = event;
+        for (const item of array) {
+            const aid = item.aid;
+            const iid = item.iid;
+            const value = item.value;
+            this.onCharacteristicChanged(aid, iid, value);
+        }
+    }
+    onCharacteristicChanged(aid, iid, value) {
+        this.log('onCharacteristicChanged: ', aid, iid, value);
+        const child = this.getChild(aid);
+        if (child == null) {
+            this.log('getChild failed: ' + aid);
+            return;
+        }
+        if (child.device == null) {
+            this.log('child.device is null: ' + aid);
+            return;
+        }
+        child.device.services.forEach((service, siid) => {
+            service.properties.forEach((property, piid) => {
+                if (piid === iid) {
+                    this.sendPropertyChanged(child.did, siid, piid, value);
+                }
+            });
+        });
+    }
+    getChild(aid) {
+        this.children.forEach((child, did) => {
+            if (child.aid === aid) {
+                return child;
+            }
+        });
+        return null;
+    }
+    sendPropertyChanged(did, siid, piid, value) {
+        const operations = [];
+        const o = new xiot_core_spec_ts_1.PropertyOperation();
+        o.pid = new xiot_core_spec_ts_1.PID(did, siid, piid);
+        o.value = value;
+        operations.push(o);
+        this.client.sendQuery(new xiot_core_message_ts_1.QueryPropertiesChanged(this.client.getNextId(), '', operations))
+            .then(result => {
+            if (result instanceof xiot_core_message_ts_1.ResultPropertiesChanged) {
+                result.properties.forEach(x => {
+                    if (x.pid) {
+                        console.log(x.pid.toString() + ' => status: ' + x.status);
+                    }
+                });
+            }
+        })
+            .catch(e => {
+            console.log('send properties changed failed: ', e);
         });
     }
 }

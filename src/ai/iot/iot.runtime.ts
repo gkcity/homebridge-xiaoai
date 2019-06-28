@@ -19,6 +19,8 @@ import {
   ResultSetProperties,
   IQError,
   ResultGetProperties,
+  QueryPropertiesChanged,
+  ResultPropertiesChanged,
 } from 'xiot-core-message-ts';
 import {
   OperationStatus,
@@ -26,13 +28,12 @@ import {
   DeviceChild,
   DeviceType,
   Device,
+  Service,
+  PID,
 } from 'xiot-core-spec-ts';
 import {IotStatus} from './iot.status';
 import {XcpClientImpl} from 'xiot-core-xcp-node-ts';
 import {Instance} from '../typedef/Instance';
-import * as rest from 'typed-rest-client/RestClient';
-import {InstanceCodec} from '../typedef/codec/InstanceCodec';
-import {register} from 'ts-node';
 
 export class IotRuntime {
 
@@ -82,7 +83,8 @@ export class IotRuntime {
     this.log('IotRuntime.initialize');
 
     children.forEach(x => {
-      this.children.set(x.serialNumber + '@' + x.productId, x);
+      x.did = x.serialNumber + '@' + x.productId;
+      this.children.set(x.did, x);
       this.log(x.serialNumber + ' => ' + x.aid);
       this.subscribeEvents(x);
     });
@@ -430,7 +432,7 @@ export class IotRuntime {
 
     const host = this.host;
     const port = this.port;
-    const body = { characteristics};
+    const body = { characteristics };
 
     this.log('Event Register %s:%s ->', host, port, JSON.stringify(body));
 
@@ -441,5 +443,88 @@ export class IotRuntime {
         this.log('Error: Event Register %s:%s ->', host, port, err, status);
       }
     });
+
+    this.hap.on('hapEvent', this.onHapEvent.bind(this));
+  }
+
+  /**
+   * [
+   *   {
+   *     host: '10.0.1.29',
+   *     port: 51826,
+   *     aid: 7,
+   *     iid: 10,
+   *     value: true,
+   *     status: true
+   *   }
+   * ]
+   */
+  private onHapEvent(event: any) {
+    this.log('onHapEvent: ', event);
+
+    const array: any[] = event;
+    for (const item of array) {
+      const aid: number = item.aid;
+      const iid: number = item.iid;
+      const value: any = item.value;
+      this.onCharacteristicChanged(aid, iid, value);
+    }
+  }
+
+  private onCharacteristicChanged(aid: number, iid: number, value: any): void {
+    this.log('onCharacteristicChanged: ', aid, iid, value);
+
+    const child = this.getChild(aid);
+    if (child == null) {
+      this.log('getChild failed: ' + aid);
+      return;
+    }
+
+    if (child.device == null) {
+      this.log('child.device is null: ' + aid);
+      return;
+    }
+
+    child.device.services.forEach((service, siid) => {
+      service.properties.forEach((property, piid) => {
+        if (piid === iid) {
+          this.sendPropertyChanged(child.did, siid, piid, value);
+        }
+      });
+    });
+  }
+
+  private getChild(aid: number): Instance | null {
+    this.children.forEach((child, did) => {
+      if (child.aid === aid) {
+        return child;
+      }
+    });
+
+    return null;
+  }
+
+  private sendPropertyChanged(did: string, siid: number, piid: number, value: any) {
+    const operations: PropertyOperation[] = [];
+
+    const o = new PropertyOperation();
+    o.pid = new PID(did, siid, piid);
+    o.value = value;
+
+    operations.push(o);
+
+    this.client.sendQuery(new QueryPropertiesChanged(this.client.getNextId(), '', operations))
+        .then(result => {
+          if (result instanceof ResultPropertiesChanged) {
+            result.properties.forEach(x => {
+              if (x.pid) {
+                console.log(x.pid.toString() + ' => status: ' + x.status);
+              }
+            });
+          }
+        })
+        .catch(e => {
+          console.log('send properties changed failed: ', e);
+        });
   }
 }

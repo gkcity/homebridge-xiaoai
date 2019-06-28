@@ -7,6 +7,7 @@ export class Instance {
     productVersion: number;
     type: DeviceType;
 
+    did = '';
     serialNumber = '';
     device: Device | null = null;
 

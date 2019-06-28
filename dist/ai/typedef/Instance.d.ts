@@ -4,6 +4,7 @@ export declare class Instance {
     productId: number;
     productVersion: number;
     type: DeviceType;
+    did: string;
     serialNumber: string;
     device: Device | null;
     constructor(aid: number, productId: number, productVersion: number, type: DeviceType);

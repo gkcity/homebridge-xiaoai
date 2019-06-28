@@ -51,7 +51,6 @@ export class XiaoaiPlatform {
         this.accessoriesConfig = this.loadAccessoriesConfig(path);
         this.hap = new HAPNodeJSClient(this.config.hap);
         this.hap.on('Ready', this.onHapClientReady.bind(this));
-        this.hap.on('hapEvent', this.onHapEvent.bind(this));
     }
 
     private onHapClientReady() {
@@ -65,10 +64,6 @@ export class XiaoaiPlatform {
         }
 
         this.hap.HAPaccessories(this.readAccessories.bind(this));
-    }
-
-    private onHapEvent(event: any) {
-        this.log('onHapEvent: ', event);
     }
 
     private readAccessories(endpoints: any[]): void {
