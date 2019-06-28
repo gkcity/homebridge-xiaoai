@@ -350,9 +350,9 @@ class IotRuntime {
         });
         const host = this.host;
         const port = this.port;
-        const body = JSON.stringify(characteristics);
-        this.log('Event Register %s:%s ->', host, port, body);
-        this.hap.HAPevent(host, port, body, (err, status) => {
+        const body = { characteristics };
+        this.log('Event Register %s:%s ->', host, port, JSON.stringify(body));
+        this.hap.HAPevent(host, port, JSON.stringify(body), (err, status) => {
             if (!err) {
                 this.log('Registered Event %s:%s ->', host, port, status);
             }

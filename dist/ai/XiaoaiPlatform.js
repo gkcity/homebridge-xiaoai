@@ -89,15 +89,14 @@ class XiaoaiPlatform {
                 definition: accessories[i + 1],
             });
         }
-        this.log('readAccessories: ', accessories.length);
-        this.log('createInstances: ', devices.length);
+        this.log('readAccessories: ' + accessories.length);
+        this.log('createInstances: ' + devices.length);
         this.createInstances(devices)
             .then(instances => this.getInstances(instances))
             .then(instances => this.createInstancesFinished(instances))
             .catch(e => this.log('createInstances failed: ', e));
     }
     createInstances(devices) {
-        this.log('createInstances...');
         const url = 'http://' + this.config.instance.host + ':' + this.config.instance.port;
         const body = { accessories: devices };
         const client = new rest.RestClient('homebridge', url);
