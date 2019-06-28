@@ -460,10 +460,15 @@ export class IotRuntime {
    * ]
    */
   private onHapEvent(event: any) {
-    // this.log('onHapEvent: ', event);
+    this.log('onHapEvent: ', event);
 
     const array: any[] = event;
-    for (const item of array) {
+
+    this.log('events: ', array.length);
+
+    for (let i = 0; i < array.length; ++i) {
+      const item = array[i];
+      this.log('item: ', item);
       const aid: number = item.aid;
       const iid: number = item.iid;
       const value: any = item.value;
@@ -498,7 +503,6 @@ export class IotRuntime {
     let found: Instance | null = null;
 
     this.children.forEach((child, did) => {
-      this.log('child: ' + child.aid + ' => ' + did);
       if (child.aid === aid) {
         found = child;
       }

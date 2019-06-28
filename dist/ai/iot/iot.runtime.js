@@ -376,7 +376,7 @@ class IotRuntime {
      * ]
      */
     onHapEvent(event) {
-        this.log('onHapEvent: ', event);
+        // this.log('onHapEvent: ', event);
         const array = event;
         for (const item of array) {
             const aid = item.aid;
@@ -405,12 +405,14 @@ class IotRuntime {
         });
     }
     getChild(aid) {
+        let found = null;
         this.children.forEach((child, did) => {
+            this.log('child: ' + child.aid + ' => ' + did);
             if (child.aid === aid) {
-                return child;
+                found = child;
             }
         });
-        return null;
+        return found;
     }
     sendPropertyChanged(did, siid, piid, value) {
         const operations = [];
