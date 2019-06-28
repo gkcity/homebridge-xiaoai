@@ -1,9 +1,10 @@
-import { DeviceType } from 'xiot-core-spec-ts';
+import { DeviceType, Device } from 'xiot-core-spec-ts';
 export declare class Instance {
-    serialNumber: string;
     aid: number;
     productId: number;
     productVersion: number;
     type: DeviceType;
+    serialNumber: string;
+    device: Device | null;
     constructor(aid: number, productId: number, productVersion: number, type: DeviceType);
 }

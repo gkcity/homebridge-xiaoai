@@ -19,6 +19,9 @@ export declare class XiaoaiPlatform {
     private onHapEvent;
     private readAccessories;
     private createInstances;
+    private getInstances;
+    private getInstance;
+    private handleGetInstanceResult;
     private createInstancesFinished;
     private handleCreateInstancesResult;
     private loadAccessoriesConfig;

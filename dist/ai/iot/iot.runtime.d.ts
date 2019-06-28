@@ -32,4 +32,5 @@ export declare class IotRuntime {
     private setAccessoryInformation;
     private readCharacteristic;
     private writeCharacteristic;
+    private subscribeEvents;
 }

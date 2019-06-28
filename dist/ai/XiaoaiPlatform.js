@@ -1,4 +1,12 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const AccessoryConfigCodec_1 = require("./typedef/codec/AccessoryConfigCodec");
 const iot_runtime_1 = require("./iot/iot.runtime");
@@ -7,6 +15,7 @@ const rest = require("typed-rest-client/RestClient");
 const fs = require("fs");
 const InstanceCodec_1 = require("./typedef/codec/InstanceCodec");
 const iot_status_1 = require("./iot/iot.status");
+const xiot_core_spec_ts_1 = require("xiot-core-spec-ts");
 const HAPNodeJSClient = require('hap-node-client').HAPNodeJSClient;
 const qrcode = require('qrcode-terminal');
 class XiaoaiPlatform {
@@ -83,16 +92,54 @@ class XiaoaiPlatform {
         this.log('readAccessories: ', accessories.length);
         this.log('createInstances: ', devices.length);
         this.createInstances(devices)
+            .then(instances => this.getInstances(instances))
             .then(instances => this.createInstancesFinished(instances))
             .catch(e => this.log('createInstances failed: ', e));
     }
     createInstances(devices) {
+        this.log('createInstances...');
         const url = 'http://' + this.config.instance.host + ':' + this.config.instance.port;
         const body = { accessories: devices };
         const client = new rest.RestClient('homebridge', url);
         return client.create('/bridge/accessory', body)
             .then(x => this.handleCreateInstancesResult(x))
             .then(x => InstanceCodec_1.InstanceCodec.decodeArray(x));
+    }
+    getInstances(instances) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const array = [];
+            for (const instance of instances) {
+                array.push(yield this.getInstance(instance));
+            }
+            return array;
+        });
+    }
+    getInstance(instance) {
+        this.log('getInstance: ' + instance.type.toString());
+        const url = 'http://' + this.config.instance.host + ':' + this.config.instance.port;
+        const resource = '/instance/' + instance.type.toString();
+        const client = new rest.RestClient('homebridge', url);
+        return client.get(resource)
+            .then(x => this.handleGetInstanceResult(instance, x));
+    }
+    handleGetInstanceResult(instance, x) {
+        if (x.statusCode !== 200 && x.statusCode !== 201) {
+            throw new Error('code: ' + x.statusCode);
+        }
+        const msg = x.result.msg;
+        if (msg !== 'ok') {
+            throw new Error('msg: ' + msg);
+        }
+        const data = x.result.data;
+        if (data == null) {
+            throw new Error('data is null');
+        }
+        const content = data.content;
+        if (content == null) {
+            throw new Error('content is null');
+        }
+        instance.device = xiot_core_spec_ts_1.DeviceCodec.decode(content);
+        return instance;
     }
     createInstancesFinished(instances) {
         this.log('createInstancesFinished: ', instances.length);

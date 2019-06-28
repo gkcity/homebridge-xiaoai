@@ -41,6 +41,7 @@ class IotRuntime {
         children.forEach(x => {
             this.children.set(x.serialNumber + '@' + x.productId, x);
             this.log(x.serialNumber + ' => ' + x.aid);
+            this.subscribeEvents(x);
         });
     }
     uninitialized() {
@@ -327,6 +328,37 @@ class IotRuntime {
                     resolve(code);
                 }
             });
+        });
+    }
+    subscribeEvents(child) {
+        this.log('subscribeEvents', child.type.toString());
+        if (child.device == null) {
+            return;
+        }
+        const characteristics = [];
+        child.device.services.forEach((service, siid) => {
+            service.properties.forEach((property, piid) => {
+                if (property.access.isNotifiable) {
+                    const item = {
+                        aid: child.aid,
+                        iid: piid,
+                        ev: true,
+                    };
+                    characteristics.push(item);
+                }
+            });
+        });
+        const host = this.host;
+        const port = this.port;
+        const body = JSON.stringify(characteristics);
+        this.log('Event Register %s:%s ->', host, port, body);
+        this.hap.HAPevent(host, port, body, (err, status) => {
+            if (!err) {
+                this.log('Registered Event %s:%s ->', host, port, status);
+            }
+            else {
+                this.log('Error: Event Register %s:%s ->', host, port, err, status);
+            }
         });
     }
 }
