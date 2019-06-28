@@ -107,8 +107,8 @@ export class XiaoaiPlatform {
             });
         }
 
-        this.log('readAccessories: ', accessories.length);
-        this.log('createInstances: ', devices.length);
+        this.log('readAccessories: ' + accessories.length);
+        this.log('createInstances: ' + devices.length);
 
         this.createInstances(devices)
             .then(instances => this.getInstances(instances))
@@ -117,7 +117,6 @@ export class XiaoaiPlatform {
     }
 
     private createInstances(devices: any[]): Promise<Instance[]> {
-        this.log('createInstances...');
         const url = 'http://' + this.config.instance.host + ':' + this.config.instance.port;
         const body = {accessories: devices};
         const client: rest.RestClient = new rest.RestClient('homebridge', url);
