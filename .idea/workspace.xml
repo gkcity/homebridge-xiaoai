@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e2d11c69-da61-4c30-a307-6b47d4697705" name="Default Changelist" comment="">
+    <list default="true" id="e2d11c69-da61-4c30-a307-6b47d4697705" name="Default Changelist" comment="add log">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ai/iot/iot.runtime.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ai/iot/iot.runtime.ts" afterDir="false" />
     </list>
@@ -19,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ai/iot/iot.runtime.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="593">
-              <caret line="502" column="22" lean-forward="true" selection-start-line="502" selection-start-column="22" selection-end-line="502" selection-end-column="22" />
+            <state relative-caret-position="270">
+              <caret line="463" lean-forward="true" selection-start-line="463" selection-end-line="463" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
               </folding>
@@ -34,6 +34,7 @@
     <findStrings>
       <find>iot</find>
       <find>instance</find>
+      <find>onCharacteristicChanged</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -192,17 +193,31 @@
       <option name="project" value="LOCAL" />
       <updated>1561688269744</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add log">
+      <created>1561688713986</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1561688713986</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add log">
+      <created>1561689169608</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1561689169608</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8420000" />
+    <option name="totallyTimeSpent" value="9165000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1133" height="1893" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31351352" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31351352" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -216,7 +231,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.29595903" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.29595903" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -231,7 +246,8 @@
     <MESSAGE value="show qrcode" />
     <MESSAGE value="fix bug" />
     <MESSAGE value="send event to cloud: property is changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="send event to cloud: property is changed" />
+    <MESSAGE value="add log" />
+    <option name="LAST_COMMIT_MESSAGE" value="add log" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/ai/typedef/codec/InstanceCodec.ts">
@@ -298,8 +314,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ai/iot/iot.runtime.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="502" column="22" lean-forward="true" selection-start-line="502" selection-start-column="22" selection-end-line="502" selection-end-column="22" />
+        <state relative-caret-position="270">
+          <caret line="463" lean-forward="true" selection-start-line="463" selection-end-line="463" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
           </folding>

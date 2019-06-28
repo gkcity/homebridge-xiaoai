@@ -460,15 +460,11 @@ export class IotRuntime {
    * ]
    */
   private onHapEvent(event: any) {
-    this.log('onHapEvent: ', event);
+    this.log('onHapEvent: ', JSON.stringify(event));
 
     const array: any[] = event;
-
-    this.log('events: ', array.length);
-
     for (let i = 0; i < array.length; ++i) {
       const item = array[i];
-      this.log('item: ', item);
       const aid: number = item.aid;
       const iid: number = item.iid;
       const value: any = item.value;
