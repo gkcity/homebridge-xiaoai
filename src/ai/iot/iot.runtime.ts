@@ -24,10 +24,15 @@ import {
   OperationStatus,
   PropertyOperation,
   DeviceChild,
+  DeviceType,
+  Device,
 } from 'xiot-core-spec-ts';
 import {IotStatus} from './iot.status';
 import {XcpClientImpl} from 'xiot-core-xcp-node-ts';
 import {Instance} from '../typedef/Instance';
+import * as rest from 'typed-rest-client/RestClient';
+import {InstanceCodec} from '../typedef/codec/InstanceCodec';
+import {register} from 'ts-node';
 
 export class IotRuntime {
 
@@ -79,6 +84,7 @@ export class IotRuntime {
     children.forEach(x => {
       this.children.set(x.serialNumber + '@' + x.productId, x);
       this.log(x.serialNumber + ' => ' + x.aid);
+      this.subscribeEvents(x);
     });
   }
 
@@ -163,7 +169,7 @@ export class IotRuntime {
     if (query instanceof QuerySetProperties) {
 
       for (const x of query.properties) {
-        if (! this.setProperty(x)) {
+        if (!this.setProperty(x)) {
           console.log('setChildProperty: ', x.pid != null ? x.pid.toString() : 'null');
 
           if (x.pid != null) {
@@ -185,7 +191,7 @@ export class IotRuntime {
   private async asyncGetProperties(query: IQQuery): Promise<ResultGetProperties | IQError> {
     if (query instanceof QueryGetProperties) {
       for (const x of query.properties) {
-        if (! this.getProperty(x)) {
+        if (!this.getProperty(x)) {
           console.log('getChildProperty: ', x.pid != null ? x.pid.toString() : 'null');
 
           if (x.pid != null) {
@@ -364,7 +370,7 @@ export class IotRuntime {
           resolve(0);
         } else {
           const value = status.characteristics[0].value;
-          this.log('readCharacteristic succeed ' + id + ' => ',  value);
+          this.log('readCharacteristic succeed ' + id + ' => ', value);
           resolve(value);
         }
       });
@@ -392,10 +398,47 @@ export class IotRuntime {
           resolve(-1);
         } else {
           const code = status.characteristics[0].status;
-          this.log('writeCharacteristic succeed ' + id + ' => ',  code);
+          this.log('writeCharacteristic succeed ' + id + ' => ', code);
           resolve(code);
         }
       });
+    });
+  }
+
+  private subscribeEvents(child: Instance): void {
+    this.log('subscribeEvents', child.type.toString());
+
+    if (child.device == null) {
+      return;
+    }
+
+    const characteristics: any = [];
+
+    child.device.services.forEach((service, siid) => {
+      service.properties.forEach((property, piid) => {
+        if (property.access.isNotifiable) {
+          const item = {
+            aid: child.aid,
+            iid: piid,
+            ev: true,
+          };
+
+          characteristics.push(item);
+        }
+      });
+    });
+
+    const host = this.host;
+    const port = this.port;
+    const body = JSON.stringify(characteristics);
+    this.log('Event Register %s:%s ->', host, port, body);
+
+    this.hap.HAPevent(host, port, body, (err: any, status: any) => {
+      if (!err) {
+        this.log('Registered Event %s:%s ->', host, port, status);
+      } else {
+        this.log('Error: Event Register %s:%s ->', host, port, err, status);
+      }
     });
   }
 }

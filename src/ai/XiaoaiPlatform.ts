@@ -8,6 +8,7 @@ import * as fs from 'fs';
 import {Instance} from './typedef/Instance';
 import {InstanceCodec} from './typedef/codec/InstanceCodec';
 import {IotStatus} from './iot/iot.status';
+import {DeviceCodec, Device} from 'xiot-core-spec-ts';
 
 const HAPNodeJSClient = require('hap-node-client').HAPNodeJSClient;
 const qrcode = require('qrcode-terminal');
@@ -110,17 +111,62 @@ export class XiaoaiPlatform {
         this.log('createInstances: ', devices.length);
 
         this.createInstances(devices)
+            .then(instances => this.getInstances(instances))
             .then(instances => this.createInstancesFinished(instances))
             .catch(e => this.log('createInstances failed: ', e));
     }
 
     private createInstances(devices: any[]): Promise<Instance[]> {
+        this.log('createInstances...');
         const url = 'http://' + this.config.instance.host + ':' + this.config.instance.port;
         const body = {accessories: devices};
         const client: rest.RestClient = new rest.RestClient('homebridge', url);
         return client.create('/bridge/accessory', body)
             .then(x => this.handleCreateInstancesResult(x))
             .then(x => InstanceCodec.decodeArray(x));
+    }
+
+    private async getInstances(instances: Instance[]): Promise<Instance[]> {
+        const array: Instance[] = [];
+        for (const instance of instances) {
+            array.push(await this.getInstance(instance));
+        }
+
+        return array;
+    }
+
+    private getInstance(instance: Instance): Promise<Instance> {
+        this.log('getInstance: ' + instance.type.toString());
+        const url = 'http://' + this.config.instance.host + ':' + this.config.instance.port;
+        const resource = '/instance/' + instance.type.toString();
+        const client: rest.RestClient = new rest.RestClient('homebridge', url);
+        return client.get(resource)
+            .then(x => this.handleGetInstanceResult(instance, x));
+    }
+
+    private handleGetInstanceResult(instance: Instance, x: rest.IRestResponse<any>): Instance {
+        if (x.statusCode !== 200 && x.statusCode !== 201) {
+            throw new Error('code: ' + x.statusCode);
+        }
+
+        const msg = x.result.msg;
+        if (msg !== 'ok') {
+            throw new Error('msg: ' + msg);
+        }
+
+        const data = x.result.data;
+        if (data == null) {
+            throw new Error('data is null');
+        }
+
+        const content = data.content;
+        if (content == null) {
+            throw new Error('content is null');
+        }
+
+        instance.device = DeviceCodec.decode(content);
+
+        return instance;
     }
 
     private createInstancesFinished(instances: Instance[]): void {
