@@ -93,9 +93,10 @@ class XiaoaiPlatform {
             .catch(e => this.log('createInstances failed: ', e));
     }
     createInstances(devices) {
+        const options = { headers: { 'token': this.config.token } };
         const url = 'http://' + this.config.instance.host + ':' + this.config.instance.port;
         const body = { accessories: devices };
-        const client = new rest.RestClient('homebridge', url);
+        const client = new rest.RestClient('homebridge', url, [], options);
         return client.create('/bridge/accessory', body)
             .then(x => this.handleCreateInstancesResult(x))
             .then(x => InstanceCodec_1.InstanceCodec.decodeArray(x));
