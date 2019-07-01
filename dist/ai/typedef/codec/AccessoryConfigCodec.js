@@ -6,7 +6,7 @@ class AccessoryConfigCodec {
         return (array != null) ? array.map(x => AccessoryConfigCodec.decode(x)) : [];
     }
     static decode(o) {
-        return new AccessoryConfig_1.AccessoryConfig(o.accessory, o.name, o.deviceId);
+        return new AccessoryConfig_1.AccessoryConfig(o.accessory, o.name);
     }
 }
 exports.AccessoryConfigCodec = AccessoryConfigCodec;

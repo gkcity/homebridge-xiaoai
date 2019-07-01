@@ -139,11 +139,9 @@ class XiaoaiPlatform {
     }
     createInstancesFinished(instances) {
         this.log('createInstancesFinished: ', instances.length);
-        for (let i = 0; i < this.accessoriesConfig.length; ++i) {
-            const accessory = this.accessoriesConfig[i];
-            const instance = instances[i];
-            instance.serialNumber = accessory.deviceId;
-        }
+        instances.forEach(x => {
+            x.serialNumber = this.iotConfig.serialNumber + '#' + x.aid;
+        });
         this.iot = this.createIotRuntime(this.iotConfig, instances);
         this.connect();
     }
