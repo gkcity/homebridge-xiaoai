@@ -4,7 +4,7 @@
 
 
 
-## 安装
+## 一 安装
 
 ### 1. 安装到当前项目
 
@@ -20,30 +20,16 @@ sudo npm i -g homebridge-xiaoai
 
 
 
-## 配置
+## 二 配置
 
-* 在homebridge的配置文件中给accessory添加名称和deviceId:
-```json
-"accessories": [
-		{
-			"accessory": "FakeBulb",
-			"name": "LightBulb 0",
-			"deviceId": "xxx"          // 建议填写配件的mac地址, 不能重复使用
-		},
-		{
-			"accessory": "FakeBulb",
-			"name": "LightBulb 1",
-			"deviceId": "yyy"          // 建议填写配件的mac地址, 不能重复使用
-		}
-	],
-```
+### 2.1 在homebridge的配置文件中给添加一个platform
 
-* 在homebridge的配置文件中给添加一个platform
 ```json
 "platforms": [
 		{
 			"platform": "XiaoAI",
 			"name": "AI Operator",
+            "token": "xxxxxxxxxxx",  // 需要填入接入秘钥, 见2.2
 			"accesspoint": {
 				"host": "accesspoint.geekool.cn",
 				"port": 80,
@@ -69,20 +55,35 @@ sudo npm i -g homebridge-xiaoai
 	]
 ```
 
-* 注意: 在bridge的配置信息里的username最好是网关的mac地址, 不能重复使用
-```json
-"bridge": {
-		"name": "MyBridge",
-		"username": "CC:22:3D:E3:CE:01",
-		"port": 51826,
-		"pin": "031-45-154"
-},
-```
+### 2.2 获取接入秘钥
 
-## 启动
+* 登录开发者平台
+
+  ```http
+  http://console.geekool.cn
+  ```
+
+* 创建一个开发组
+
+* 点击秘钥菜单, 可以看到HomeBridge插件秘钥
+
+* 将这个秘钥填入上面的token中. 
+
+
+
+## 三 启动
 
 ```
 homebridge -I
 ```
 
-注意，必须携带-I参数启动，否则会启动失败．
+* 注意:
+  * 必须携带-I参数启动，否则会启动失败．
+  * 启动后,  除了HomeKit的二维码之外, 还会出现一个网关的二维码.
+
+
+
+## 四 绑定和控制
+
+*　使用app登录后, 点击右上角的扫描按钮, 扫描网关的二维码后, 可以绑定此网关, 并对网关里的设备进行控制．
+
