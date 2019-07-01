@@ -8,7 +8,8 @@ import * as fs from 'fs';
 import {Instance} from './typedef/Instance';
 import {InstanceCodec} from './typedef/codec/InstanceCodec';
 import {IotStatus} from './iot/iot.status';
-import {DeviceCodec, Device} from 'xiot-core-spec-ts';
+import {DeviceCodec} from 'xiot-core-spec-ts';
+import {IRequestOptions} from 'typed-rest-client/Interfaces';
 
 const HAPNodeJSClient = require('hap-node-client').HAPNodeJSClient;
 const qrcode = require('qrcode-terminal');
@@ -112,9 +113,11 @@ export class XiaoaiPlatform {
     }
 
     private createInstances(devices: any[]): Promise<Instance[]> {
+        const options: IRequestOptions = { headers: {'token': this.config.token} };
+
         const url = 'http://' + this.config.instance.host + ':' + this.config.instance.port;
         const body = {accessories: devices};
-        const client: rest.RestClient = new rest.RestClient('homebridge', url);
+        const client: rest.RestClient = new rest.RestClient('homebridge', url, [], options);
         return client.create('/bridge/accessory', body)
             .then(x => this.handleCreateInstancesResult(x))
             .then(x => InstanceCodec.decodeArray(x));

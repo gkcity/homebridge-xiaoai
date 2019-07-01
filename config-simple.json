@@ -22,15 +22,7 @@
 		{
 			"platform": "XiaoAI",
 			"name": "AI Operator",
-			"accesspoint": {
-				"host": "accesspoint.geekool.cn",
-				"port": 80,
-				"uri": "/endpoint"
-			},
-			"instance": {
-				"host": "console.geekool.cn",
-				"port": 80
-			},
+			"token": "kegy08quJZHOeNbRAo6c17Sa2hecLjrIE/FlmjN+UDxXnB9v53KVCNuAfWR+Ht730Oa2D9hZ3r2aP7vSMRLnfQ==",
 			"hap": {
 				"pin": "031-45-154",
 				"refresh": 900,
@@ -42,6 +34,15 @@
 				"deviceLTPK": "1C8aJqc0Vfp4KYP+BTBvOELQbmwBYknqYEvm+0UhA/o=",
 				"deviceLTSK": "yfUDUaoQqIln7DUXLafyUfuNCaONbdghtUyakHZWAg4=",
 				"serverLTPK": "/8meBcfecxNl7pMIO0Zxbhx70A4DSGio7C2H7VzZLB8="
+			},
+			"instance": {
+				"host": "console.geekool.cn",
+				"port": 80
+			},
+			"accesspoint": {
+				"host": "accesspoint.geekool.cn",
+				"port": 80,
+				"uri": "/endpoint"
 			}
 		}
 	]
