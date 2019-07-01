@@ -9,13 +9,11 @@
 	"accessories": [
 		{
 			"accessory": "FakeBulb",
-			"name": "LightBulb 0",
-			"deviceId": "123456abcd"
+			"name": "LightBulb 0"
 		},
 		{
 			"accessory": "FakeBulb",
-			"name": "LightBulb 1",
-			"deviceId": "123456abce"
+			"name": "LightBulb 1"
 		}
 	],
 	"platforms": [

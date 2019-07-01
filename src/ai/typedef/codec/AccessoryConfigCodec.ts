@@ -8,6 +8,6 @@ export class AccessoryConfigCodec {
     }
 
     static decode(o: any): AccessoryConfig {
-        return new AccessoryConfig(o.accessory, o.name, o.deviceId);
+        return new AccessoryConfig(o.accessory, o.name);
     }
 }
