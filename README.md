@@ -26,33 +26,33 @@ sudo npm i -g homebridge-xiaoai
 
 ```json
 "platforms": [
-		{
-			"platform": "XiaoAI",
-			"name": "AI Operator",
-            "token": "xxxxxxxxxxx",  // 需要填入接入秘钥, 见2.2
-			"accesspoint": {
-				"host": "accesspoint.geekool.cn",
-				"port": 80,
-				"uri": "/endpoint"
-			},
-			"instance": {
-				"host": "console.geekool.cn",
-				"port": 80
-			},
-			"hap": {
-				"pin": "031-45-154",
-				"refresh": 900,
-				"debug": false
-			},
-			"iot": {
-				"productId": 25,
-				"productVersion": 1,
-				"deviceLTPK": "1C8aJqc0Vfp4KYP+BTBvOELQbmwBYknqYEvm+0UhA/o=",
-				"deviceLTSK": "yfUDUaoQqIln7DUXLafyUfuNCaONbdghtUyakHZWAg4=",
-				"serverLTPK": "/8meBcfecxNl7pMIO0Zxbhx70A4DSGio7C2H7VzZLB8="
-			}
-		}
-	]
+    {
+        "platform": "XiaoAI",
+        "name": "AI Operator",
+        "token": "xxxxxxxxxxx",  // 需要填入接入秘钥, 见2.2
+        "accesspoint": {
+            "host": "accesspoint.geekool.cn",
+            "port": 80,
+            "uri": "/endpoint"
+        },
+        "instance": {
+            "host": "console.geekool.cn",
+            "port": 80
+        },
+        "hap": {
+            "pin": "031-45-154",
+            "refresh": 900,
+            "debug": false
+        },
+        "iot": {
+            "productId": 25,
+            "productVersion": 1,
+            "deviceLTPK": "1C8aJqc0Vfp4KYP+BTBvOELQbmwBYknqYEvm+0UhA/o=",
+            "deviceLTSK": "yfUDUaoQqIln7DUXLafyUfuNCaONbdghtUyakHZWAg4=",
+            "serverLTPK": "/8meBcfecxNl7pMIO0Zxbhx70A4DSGio7C2H7VzZLB8="
+        }
+    }
+]
 ```
 
 ### 2.2 获取接入秘钥
@@ -85,5 +85,10 @@ homebridge -I
 
 ## 四 绑定和控制
 
-*　使用app登录后, 点击右上角的扫描按钮, 扫描网关的二维码后, 可以绑定此网关, 并对网关里的设备进行控制．
+*　使用app登录后, 点击右上角的扫描按钮, 扫描网关的二维码后, 可以绑定此网关, 并对网关里的设备进行控制．app在下面地址下载:
+```http
+https://geekool.oss-cn-beijing.aliyuncs.com/GeekHome-2019-7-13-0916.apk
+```
 
+## 五 问题反馈
+请发邮件：17915185@qq.com
