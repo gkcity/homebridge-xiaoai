@@ -85,10 +85,10 @@ homebridge -I
 
 ## 四 绑定和控制
 
-*　使用app登录后, 点击右上角的扫描按钮, 扫描网关的二维码后, 可以绑定此网关, 并对网关里的设备进行控制．app在下面地址下载:
-```http
-https://geekool.oss-cn-beijing.aliyuncs.com/GeekHome-2019-7-13-0916.apk
-```
+* [app下载][1]
+* 使用[app][1]登录后, 点击右上角的扫描按钮, 扫描网关的二维码后, 可以绑定此网关, 并对网关里的设备进行控制．
 
 ## 五 问题反馈
 请发邮件：17915185@qq.com
+
+[1]: https://geekool.oss-cn-beijing.aliyuncs.com/GeekHome-2019-7-13-0916.apk
