@@ -66,7 +66,7 @@ export class IotRuntime {
     this.status = IotStatus.INITIALIZING;
     const getter = new IotLtskGetterImpl(deviceLTPK, deviceLTSK);
     const cipher = new XcpClientCipherProductImpl(productId, productVersion, getter, Convert.base642bin(serverLTPK));
-    const codec = XcpFrameCodecType.NOT_CRYPT;
+    const codec = XcpFrameCodecType.CHACHA20_POLY1305;
     this.client = new XcpClientImpl(serialNumber, productId, productVersion, cipher, codec);
     this.client.addDisconnectHandler(() => this.onDisconnect());
     this.client.addQueryHandler(GET_PROPERTIES_METHOD, (query) => this.getProperties(query));

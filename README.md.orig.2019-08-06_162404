@@ -92,4 +92,4 @@ homebridge -I
 请发邮件：17915185@qq.com
 
 [1]: http://console.geekool.cn
-[2]: https://geekool.oss-cn-beijing.aliyuncs.com/GeekHome-2019-7-13-0916.apk
+[2]: https://geekool.oss-cn-beijing.aliyuncs.com/GeekHome-debug.apk
