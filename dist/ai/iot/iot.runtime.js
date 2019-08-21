@@ -25,7 +25,7 @@ class IotRuntime {
         this.status = iot_status_1.IotStatus.INITIALIZING;
         const getter = new iot_ltsk_getter_impl_1.IotLtskGetterImpl(deviceLTPK, deviceLTSK);
         const cipher = new xiot_core_xcp_ts_1.XcpClientCipherProductImpl(productId, productVersion, getter, mipher_1.Convert.base642bin(serverLTPK));
-        const codec = xiot_core_xcp_ts_1.XcpFrameCodecType.CHACHA20_POLY1305;
+        const codec = xiot_core_xcp_ts_1.XcpFrameCodecType.NOT_CRYPT;
         this.client = new xiot_core_xcp_node_ts_1.XcpClientImpl(serialNumber, productId, productVersion, cipher, codec);
         this.client.addDisconnectHandler(() => this.onDisconnect());
         this.client.addQueryHandler(xiot_core_message_ts_1.GET_PROPERTIES_METHOD, (query) => this.getProperties(query));

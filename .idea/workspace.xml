@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2d11c69-da61-4c30-a307-6b47d4697705" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md.orig.2019-08-06_164451" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md.toc.2019-08-06_164451" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Troubleshooting.md.toc.2019-08-06_164453" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ai/iot/iot.runtime.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ai/iot/iot.runtime.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,6 +93,7 @@
       <workItem from="1561700518245" duration="282000" />
       <workItem from="1561952759130" duration="657000" />
       <workItem from="1565079796507" duration="171000" />
+      <workItem from="1566353426669" duration="763000" />
     </task>
     <task id="LOCAL-00001" summary="fix bug">
       <created>1561342626486</created>
@@ -164,7 +169,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
