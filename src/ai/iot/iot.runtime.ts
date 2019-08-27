@@ -21,7 +21,7 @@ import {
   ResultGetProperties,
   QueryPropertiesChanged,
   ResultPropertiesChanged,
-} from 'xiot-core-message-ts';
+} from 'xiot-core-xcp-ts';
 import {
   OperationStatus,
   PropertyOperation,

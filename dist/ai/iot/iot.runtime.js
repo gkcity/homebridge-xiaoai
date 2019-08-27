@@ -11,7 +11,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const iot_ltsk_getter_impl_1 = require("./iot.ltsk.getter.impl");
 const mipher_1 = require("mipher");
 const xiot_core_xcp_ts_1 = require("xiot-core-xcp-ts");
-const xiot_core_message_ts_1 = require("xiot-core-message-ts");
+const xiot_core_xcp_ts_2 = require("xiot-core-xcp-ts");
 const xiot_core_spec_ts_1 = require("xiot-core-spec-ts");
 const iot_status_1 = require("./iot.status");
 const xiot_core_xcp_node_ts_1 = require("xiot-core-xcp-node-ts");
@@ -28,10 +28,10 @@ class IotRuntime {
         const codec = xiot_core_xcp_ts_1.XcpFrameCodecType.NOT_CRYPT;
         this.client = new xiot_core_xcp_node_ts_1.XcpClientImpl(serialNumber, productId, productVersion, cipher, codec);
         this.client.addDisconnectHandler(() => this.onDisconnect());
-        this.client.addQueryHandler(xiot_core_message_ts_1.GET_PROPERTIES_METHOD, (query) => this.getProperties(query));
-        this.client.addQueryHandler(xiot_core_message_ts_1.SET_PROPERTIES_METHOD, (query) => this.setProperties(query));
-        this.client.addQueryHandler(xiot_core_message_ts_1.INVOKE_ACTION_METHOD, (query) => this.invokeAction(query));
-        this.client.addQueryHandler(xiot_core_message_ts_1.GET_CHILDREN_METHOD, (query) => this.getChildren(query));
+        this.client.addQueryHandler(xiot_core_xcp_ts_2.GET_PROPERTIES_METHOD, (query) => this.getProperties(query));
+        this.client.addQueryHandler(xiot_core_xcp_ts_2.SET_PROPERTIES_METHOD, (query) => this.setProperties(query));
+        this.client.addQueryHandler(xiot_core_xcp_ts_2.INVOKE_ACTION_METHOD, (query) => this.invokeAction(query));
+        this.client.addQueryHandler(xiot_core_xcp_ts_2.GET_CHILDREN_METHOD, (query) => this.getChildren(query));
         this.status = iot_status_1.IotStatus.INITIALIZED;
         this.log = log;
         this.hap = hap;
@@ -73,9 +73,9 @@ class IotRuntime {
         return this.client.disconnect();
     }
     getAccessKey() {
-        return this.client.sendQuery(new xiot_core_message_ts_1.QueryGetAccessKey(this.client.getNextId()))
+        return this.client.sendQuery(new xiot_core_xcp_ts_2.QueryGetAccessKey(this.client.getNextId()))
             .then(result => {
-            if (result instanceof xiot_core_message_ts_1.ResultGetAccessKey) {
+            if (result instanceof xiot_core_xcp_ts_2.ResultGetAccessKey) {
                 return result.key;
             }
             else {
@@ -86,9 +86,9 @@ class IotRuntime {
     }
     resetAccessKey() {
         const key = 'this a demo key';
-        return this.client.sendQuery(new xiot_core_message_ts_1.QuerySetAccessKey(this.client.getNextId(), key))
+        return this.client.sendQuery(new xiot_core_xcp_ts_2.QuerySetAccessKey(this.client.getNextId(), key))
             .then(result => {
-            if (result instanceof xiot_core_message_ts_1.ResultSetAccessKey) {
+            if (result instanceof xiot_core_xcp_ts_2.ResultSetAccessKey) {
                 return key;
             }
             else {
@@ -100,7 +100,7 @@ class IotRuntime {
     getProperties(query) {
         this.asyncGetProperties(query)
             .then(x => {
-            if (x instanceof xiot_core_message_ts_1.ResultGetProperties) {
+            if (x instanceof xiot_core_xcp_ts_2.ResultGetProperties) {
                 this.client.sendResult(x);
             }
             else {
@@ -112,7 +112,7 @@ class IotRuntime {
     setProperties(query) {
         this.asyncSetProperties(query)
             .then(x => {
-            if (x instanceof xiot_core_message_ts_1.ResultSetProperties) {
+            if (x instanceof xiot_core_xcp_ts_2.ResultSetProperties) {
                 this.client.sendResult(x);
             }
             else {
@@ -123,7 +123,7 @@ class IotRuntime {
     }
     asyncSetProperties(query) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (query instanceof xiot_core_message_ts_1.QuerySetProperties) {
+            if (query instanceof xiot_core_xcp_ts_2.QuerySetProperties) {
                 for (const x of query.properties) {
                     if (!this.setProperty(x)) {
                         console.log('setChildProperty: ', x.pid != null ? x.pid.toString() : 'null');
@@ -145,7 +145,7 @@ class IotRuntime {
     }
     asyncGetProperties(query) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (query instanceof xiot_core_message_ts_1.QueryGetProperties) {
+            if (query instanceof xiot_core_xcp_ts_2.QueryGetProperties) {
                 for (const x of query.properties) {
                     if (!this.getProperty(x)) {
                         console.log('getChildProperty: ', x.pid != null ? x.pid.toString() : 'null');
@@ -166,7 +166,7 @@ class IotRuntime {
         });
     }
     invokeAction(query) {
-        if (query instanceof xiot_core_message_ts_1.QueryInvokeAction) {
+        if (query instanceof xiot_core_xcp_ts_2.QueryInvokeAction) {
             // this.device.tryInvoke(query.operation);
             // this.client.sendResult(query);
             // invokeAction(query.operation);
@@ -177,7 +177,7 @@ class IotRuntime {
         }
     }
     getChildren(query) {
-        if (query instanceof xiot_core_message_ts_1.QueryGetChildren) {
+        if (query instanceof xiot_core_xcp_ts_2.QueryGetChildren) {
             const array = [];
             this.children.forEach((v, did) => array.push(new xiot_core_spec_ts_1.DeviceChild(did, v.type)));
             this.client.sendResult(query.result(array));
@@ -199,7 +199,7 @@ class IotRuntime {
     }
     doKeepalive() {
         this.checkClient();
-        this.client.sendQuery(new xiot_core_message_ts_1.QueryPing(this.client.getNextId()))
+        this.client.sendQuery(new xiot_core_xcp_ts_2.QueryPing(this.client.getNextId()))
             .then(x => {
             console.log('recv pong: ', x.id);
         })
@@ -420,9 +420,9 @@ class IotRuntime {
         o.pid = new xiot_core_spec_ts_1.PID(did, siid, piid);
         o.value = value;
         operations.push(o);
-        this.client.sendQuery(new xiot_core_message_ts_1.QueryPropertiesChanged(this.client.getNextId(), '', operations))
+        this.client.sendQuery(new xiot_core_xcp_ts_2.QueryPropertiesChanged(this.client.getNextId(), '', operations))
             .then(result => {
-            if (result instanceof xiot_core_message_ts_1.ResultPropertiesChanged) {
+            if (result instanceof xiot_core_xcp_ts_2.ResultPropertiesChanged) {
                 result.properties.forEach(x => {
                     if (x.pid) {
                         console.log(x.pid.toString() + ' => status: ' + x.status);
