@@ -10,6 +10,7 @@ import {InstanceCodec} from './typedef/codec/InstanceCodec';
 import {IotStatus} from './iot/iot.status';
 import {DeviceCodec} from 'xiot-core-spec-ts';
 import {IRequestOptions} from 'typed-rest-client/Interfaces';
+import {Md5} from 'ts-md5';
 
 const HAPNodeJSClient = require('hap-node-client').HAPNodeJSClient;
 const qrcode = require('qrcode-terminal');
@@ -242,7 +243,7 @@ export class XiaoaiPlatform {
                 .then(x => {
                     const code = {
                         id: this.iotConfig.serialNumber + '@' + this.iotConfig.productId + '/' + this.iotConfig.productVersion,
-                        key: x,
+                        key: Md5.hashStr(x),
                     };
                     this.log('getAccessKey: ', code);
                     this.log('Scan this code with your GeekHome app on your android device to pair with Homebridge');

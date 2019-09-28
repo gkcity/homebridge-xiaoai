@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e2d11c69-da61-4c30-a307-6b47d4697705" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ai/XiaoaiPlatform.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ai/XiaoaiPlatform.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -93,6 +95,8 @@
       <workItem from="1566353426669" duration="809000" />
       <workItem from="1566354844740" duration="640000" />
       <workItem from="1566868984112" duration="21000" />
+      <workItem from="1569563810716" duration="716000" />
+      <workItem from="1569667389299" duration="273000" />
     </task>
     <task id="LOCAL-00001" summary="fix bug">
       <created>1561342626486</created>

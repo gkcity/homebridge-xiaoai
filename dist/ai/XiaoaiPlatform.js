@@ -16,6 +16,7 @@ const fs = require("fs");
 const InstanceCodec_1 = require("./typedef/codec/InstanceCodec");
 const iot_status_1 = require("./iot/iot.status");
 const xiot_core_spec_ts_1 = require("xiot-core-spec-ts");
+const ts_md5_1 = require("ts-md5");
 const HAPNodeJSClient = require('hap-node-client').HAPNodeJSClient;
 const qrcode = require('qrcode-terminal');
 class XiaoaiPlatform {
@@ -192,7 +193,7 @@ class XiaoaiPlatform {
                 .then(x => {
                 const code = {
                     id: this.iotConfig.serialNumber + '@' + this.iotConfig.productId + '/' + this.iotConfig.productVersion,
-                    key: x,
+                    key: ts_md5_1.Md5.hashStr(x),
                 };
                 this.log('getAccessKey: ', code);
                 this.log('Scan this code with your GeekHome app on your android device to pair with Homebridge');
