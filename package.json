@@ -50,6 +50,6 @@
     "typescript": "^3.1.6",
     "typings": "^2.1.1",
     "yajsondiff": "^2.0.0",
-    "documentation": "11.0.0"
+    "documentation": "14.0.0"
   }
 }
